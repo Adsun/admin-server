@@ -1,0 +1,44 @@
+enableApi: true
+server: 
+  port: 18080
+  address: 0.0.0.0
+admin: 
+  userName: admin
+  passWord: 123456
+spring: 
+  http: 
+    multipart: 
+      max-file-size: 200MB
+      max-request-size: 200MB
+  jackson: 
+    date-format: "yyyy-MM-dd HH:mm:ss" 
+    time-zone: GMT+8
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://118.24.110.84:3306/admin-server?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  jpa: 
+    properties: 
+      hibernate: 
+        format_sql: true
+        use_sql_comments: true
+        hbm2ddl: 
+          auto: update
+logging:
+  config:
+   classpath:logback-boot.xml
