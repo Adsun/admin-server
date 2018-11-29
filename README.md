@@ -1,7 +1,4 @@
-# JfshareOfficeInnerPro
 
-#### 项目介绍
-内部办公系统，公司内部的合同、联系人、项目信息跟踪
 
 #### 软件架构
 Spring Data JPA :
