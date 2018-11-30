@@ -6,7 +6,7 @@ admin:
   userName: admin
   passWord: 123456
 spring: 
-  http: 
+  servlet: 
     multipart: 
       max-file-size: 200MB
       max-request-size: 200MB
