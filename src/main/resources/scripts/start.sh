@@ -6,8 +6,8 @@ source /etc/profile
 
 ## service name
 #########################    change   ######################################
-SERVICE_NAME=JfshareOfficeInnerPro-1.0.0
-APP_NAME=com.jfshare.JfshareOfficeInnerPro
+SERVICE_NAME=admin-server-1.0.0
+APP_NAME=com.admin-server
 
 
 ###################     do not change   ###################
