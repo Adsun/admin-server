@@ -35,21 +35,29 @@ public class UserInfoController {
 			@RequestParam Integer number, @RequestParam Integer size) {
 		return userInfoService.getUserInfo(number-1, size);
 	}
+	
 	@ApiOperation("新增和更新用户信息")
 	@PostMapping
 	public ResultConstant updateUserInfo(@RequestBody UserInfo userInfo) {
+		UserInfo currentUser = userInfoService.getCurrentUser(); 
+		if (!currentUser.getAdminInd()) {
+			return ResultConstant.ofFail(ResultConstant.FAIL_CODE_SYSTEM_ERROR, "请使用管理员账户操作");
+		}
 		if (userInfo.getId() != null) {
 			userInfoService.updateUserInfo(userInfo);
 		} else {
 			userInfoService.addUserInfo(userInfo);
 		}
-		
 		return ResultConstant.ofSuccess();
 	}
 	
 	@ApiOperation("删除用户信息")
 	@DeleteMapping
 	public ResultConstant deleteUserInfo(@RequestParam Long userId) {
+		UserInfo currentUser = userInfoService.getCurrentUser(); 
+		if (!currentUser.getAdminInd()) {
+			return ResultConstant.ofFail(ResultConstant.FAIL_CODE_SYSTEM_ERROR, "请使用管理员账户操作");
+		}
 		userInfoService.deleteUserInfo(userId);
 		return ResultConstant.ofSuccess();
 	}
