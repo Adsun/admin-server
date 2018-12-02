@@ -30,7 +30,8 @@ public class WebMvcApp implements WebMvcConfigurer {
 	private CorsConfiguration buildConfig() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		// 允许跨域访问的域名
-		corsConfiguration.addAllowedOrigin("*");
+		corsConfiguration.addAllowedOrigin("http://118.24.110.84:8081");
+		corsConfiguration.addAllowedOrigin("http://localhost:18007");
 		// 请求头
 		corsConfiguration.addAllowedHeader("*");
 		// 请求方法
