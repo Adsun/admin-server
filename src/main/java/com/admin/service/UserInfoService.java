@@ -45,8 +45,9 @@ public class UserInfoService {
 	public void updateUserInfo(UserInfo userInfo) {
 		UserInfo tbUserInfo = userInfoRepository.getOne(userInfo.getId());
 		tbUserInfo.setAdminInd(userInfo.getAdminInd());
-		tbUserInfo.setFullName(tbUserInfo.getFullName());
-		tbUserInfo.setPassWord(tbUserInfo.getPassWord());
+		tbUserInfo.setFullName(userInfo.getFullName());
+		tbUserInfo.setPassWord(userInfo.getPassWord());
+		tbUserInfo.setAdminInd(userInfo.getAdminInd());
 		userInfoRepository.updateEntity(userInfo);
 	}
 	

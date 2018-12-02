@@ -34,7 +34,6 @@ public class UserInfo extends AbstractEntity implements Serializable {
     @Column(nullable = false, unique=true)
     private String userName;
 //  用户密码 MD5
-    @Column(nullable = false, unique=true)
     private String passWord;
     
     private Boolean adminInd = false;
