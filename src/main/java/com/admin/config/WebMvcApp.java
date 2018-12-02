@@ -1,6 +1,5 @@
 package com.admin.config;
 
-import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +10,6 @@ import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
 
 /**
  * @author fengxiang
@@ -56,13 +54,6 @@ public class WebMvcApp implements WebMvcConfigurer {
         .excludePathPatterns("/login","/logout","/error","/unauth","/sendMsg","/checkAuth","/addFile/**","/contact/**","/cooper/**",
         		"/swagger-ui.html","/webjars/**","/swagger-resources/**","/v2/**","/supplier/constant","/supplier/area","/project/user");
 	}
-	
-	@Bean
-	@Autowired
-	public JPAQueryFactory queryFactory(EntityManager entityManager) {
-		JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
-		return queryFactory;
-	} 
 	
 
 }
