@@ -16,7 +16,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Resource extends AbstractEntity {
-	private String resId;
 	private String resName;
 	private String constantId;
 	private String resContent;

@@ -16,7 +16,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Teacher extends AbstractEntity {
-	private Integer teacherId;
 	private String name;
 	private String summary;
 	private String detail;

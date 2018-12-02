@@ -19,10 +19,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Course extends AbstractEntity {
-	private String courseId;
 	private String courseName;
 	private String constantId;
-	private List<String> constantIds;
 	private String startTime;
 	private String teacher;
 	private String price;

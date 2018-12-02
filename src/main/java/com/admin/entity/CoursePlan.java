@@ -18,7 +18,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CoursePlan extends AbstractEntity {
-	private Integer planId;
 	private Integer courseId;
 	private String courseDate;
 	private String courseTime;

@@ -16,7 +16,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Job extends AbstractEntity {
-	private Integer jobId;
 	private String jobDtl;
 	private String name;
 	private String eName;
