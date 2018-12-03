@@ -1,8 +1,7 @@
 package com.admin.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLDeleteAll;
@@ -22,4 +21,6 @@ public class Picture extends AbstractEntity {
 	private String path;// 文件路径
 	private String url;// 跳转url
 	private String picId;
+	@Transient
+	private String picName;
 }
