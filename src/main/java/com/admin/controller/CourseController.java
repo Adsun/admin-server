@@ -28,11 +28,11 @@ public class CourseController {
 	}
 	
 	@PostMapping
-	public ResultConstant editCourse(@RequestBody Course Course) {
-		if (Course.getId() != null) {
-			courseService.updateCourse(Course);
+	public ResultConstant editCourse(@RequestBody Course course) {
+		if (course.getId() != null) {
+			courseService.updateCourse(course);
 		} else {
-			courseService.addCourse(Course);
+			courseService.addCourse(course);
 		}
 		return ResultConstant.ofSuccess();
 	}
