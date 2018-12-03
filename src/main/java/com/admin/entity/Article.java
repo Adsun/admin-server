@@ -3,6 +3,7 @@ package com.admin.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLDeleteAll;
@@ -19,6 +20,8 @@ import lombok.Setter;
 @Setter
 public class Article extends AbstractEntity {
     private String articleId;
+    @Transient
+    private String articleName;
     private String articleContent;
     private String contentUrl;
 }

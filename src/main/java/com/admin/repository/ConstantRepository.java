@@ -1,5 +1,7 @@
 package com.admin.repository;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 
 import org.hibernate.annotations.SQLDelete;
@@ -15,5 +17,6 @@ import lombok.Setter;
 
 @Repository
 public interface ConstantRepository extends BaseRepository<Constant, Long> {
-	
+	public List<Constant> findByConstantTypeIn(List<Integer> types);
+	public List<Constant> findByConstantId(String constantId);
 }
