@@ -1,7 +1,6 @@
 package com.admin.service;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,12 +16,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.admin.entity.Picture;
+import com.admin.repository.ConstantRepository;
 import com.admin.repository.PictureRepository;
 
 @Service
 public class PictureService {
 	@Autowired
 	private PictureRepository pictureRepository;
+	@Autowired
+	private ConstantRepository constantRepository;
 	private static final String baseFilePath = "/data/upload/";
 	private static final String baseFileUrl = "/upload/";
 
@@ -45,7 +47,6 @@ public class PictureService {
 			if(!newFile.exists()) {
 				newFile.createNewFile();
 			}
-			
 			FileOutputStream out = new FileOutputStream(newFile);
 			out.write(file.getBytes());
 			out.flush();
@@ -58,7 +59,11 @@ public class PictureService {
 
 	@Transactional
 	public Page<Picture> getPicture(Integer page, Integer size) {
-		return pictureRepository.findAll(PageRequest.of(page, size));
+		Page<Picture> pictures = pictureRepository.findAll(PageRequest.of(page, size));
+		for (Picture picture : pictures.getContent()) {
+			picture.setPicName(constantRepository.findByConstantId(picture.getPicId()).get(0).getConstantName());
+		}
+		return pictures;
 	}
 
 	@Transactional

@@ -27,7 +27,7 @@ public class PictureController {
 		return ResultConstant.ofSuccess(pictureService.getPicture(number-1, size));
 	}
 	
-	@PutMapping
+	@PostMapping("/upload")
 	public ResultConstant uploadPicture(MultipartFile file) {
 		return ResultConstant.ofSuccess(pictureService.uploadPicture(file));
 	}
