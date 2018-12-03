@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLDeleteAll;
@@ -20,14 +21,14 @@ import lombok.Setter;
 @Setter
 public class Course extends AbstractEntity {
 	private String courseName;
+	@Transient
+	private String constantName;
 	private String constantId;
 	private String startTime;
 	private String teacher;
 	private String price;
 	private String courseDtl;
-	private String coursePlan;
 	private String imgUrl;
 	private String teacherDtl;
 	private String teacherImg;
-	private Date updateTime;
 }

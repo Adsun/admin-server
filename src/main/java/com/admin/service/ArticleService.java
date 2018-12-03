@@ -44,6 +44,7 @@ public class ArticleService {
 	@Transactional
 	public void updateArticle(Article article) {
 		Article tbArticle = articleRepository.getOne(article.getId());
+		tbArticle.setArticleId(article.getArticleId());
 		tbArticle.setArticleContent(article.getArticleContent());
 		tbArticle.setContentUrl(article.getContentUrl());
 		articleRepository.updateEntity(tbArticle);
@@ -51,7 +52,7 @@ public class ArticleService {
 	
 	@Transactional
 	public void deleteArticle(Long id) {
-		articleRepository.deleteById(id);
+		articleRepository.deleteEntityById(id);
 	}
 	
 	@Transactional

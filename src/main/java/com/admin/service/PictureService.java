@@ -69,6 +69,7 @@ public class PictureService {
 	@Transactional
 	public void updatePicture(Picture picture) {
 		Picture tbPicture = pictureRepository.getOne(picture.getId());
+		tbPicture.setPicId(picture.getPicId());
 		tbPicture.setPath(picture.getPath());
 		tbPicture.setUrl(picture.getUrl());
 		pictureRepository.updateEntity(tbPicture);
@@ -76,7 +77,7 @@ public class PictureService {
 
 	@Transactional
 	public void deletePicture(Long id) {
-		pictureRepository.deleteById(id);
+		pictureRepository.deleteEntityById(id);
 	}
 
 	@Transactional
