@@ -43,12 +43,12 @@ public class CourseController {
 		return ResultConstant.ofSuccess();
 	}
 	
-	@GetMapping
+	@GetMapping("/plan")
 	public ResultConstant getCoursePlan(@RequestParam Integer courseId, @RequestParam Integer number, @RequestParam Integer size) {
 		return ResultConstant.ofSuccess(coursePlanService.getCourse(courseId, number-1, size));
 	}
 	
-	@PostMapping
+	@PostMapping("/plan")
 	public ResultConstant editCoursePlan(@RequestBody CoursePlan coursePlan) {
 		if (coursePlan.getId() != null) {
 			coursePlanService.updateCoursePlan(coursePlan);
@@ -57,7 +57,7 @@ public class CourseController {
 		}
 		return ResultConstant.ofSuccess();
 	}
-	@DeleteMapping
+	@DeleteMapping("/plan")
 	public ResultConstant deleteCoursePlan(Long id) {
 		coursePlanService.deleteCoursePlan(id);
 		return ResultConstant.ofSuccess();
