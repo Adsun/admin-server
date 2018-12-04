@@ -23,8 +23,8 @@ public class JobService {
 	
 	@Transactional
 	public Page<Job> getJob(Integer page, Integer size) {
-		Page<Job> Jobs = jobRepository.findAll(PageRequest.of(page, size));
-		return Jobs;
+		Page<Job> jobs = jobRepository.findAll(PageRequest.of(page, size));
+		return jobs;
 	}
 	
 	@Transactional
