@@ -19,7 +19,7 @@ public class CoursePlanService {
 	
 	@Transactional
 	public List<CoursePlan> findCoursePlan(Integer courseId){
-		return coursePlanRepository.findByCourseId(courseId);
+		return coursePlanRepository.findByCourseIdOrderByUpdateDatetimeDesc(courseId);
 	}
 	
 	@Transactional

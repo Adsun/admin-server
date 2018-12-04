@@ -1,7 +1,5 @@
 package com.admin.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 
 import org.hibernate.annotations.SQLDelete;
@@ -22,5 +20,4 @@ public class CoursePlan extends AbstractEntity {
 	private String courseDate;
 	private String courseTime;
 	private String courseDtl;
-	private Date updateTime;
 }

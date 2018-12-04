@@ -1,6 +1,7 @@
 package com.admin.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLDeleteAll;
@@ -17,6 +18,8 @@ import lombok.Setter;
 @Setter
 public class Resource extends AbstractEntity {
 	private String resName;
+	@Transient
+	private String ConstantName;
 	private String constantId;
 	private String resContent;
 	private String videoUrl;
