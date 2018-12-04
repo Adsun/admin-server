@@ -31,7 +31,7 @@ public class JobService {
 	public void updateJob(Job job) {
 		Job tbJob = jobRepository.getOne(job.getId());
 		tbJob.setName(job.getName());
-		tbJob.setEName(job.getEName());
+		tbJob.setEnglishName(job.getEnglishName());
 		tbJob.setJobDtl(job.getJobDtl());
 		jobRepository.updateEntity(tbJob);
 	}

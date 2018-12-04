@@ -18,5 +18,5 @@ import lombok.Setter;
 public class Job extends AbstractEntity {
 	private String jobDtl;
 	private String name;
-	private String eName;
+	private String englishName;
 }
