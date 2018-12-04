@@ -33,12 +33,6 @@ public class MyShiroRealm extends AuthorizingRealm {
 	@Autowired
 	private UserInfoRepository userInfoRepository;
 	
-	@Value("${admin.userName}")
-	private String adminName;
-	
-	@Value("${admin.passWord}")
-	private String adminWord;
-	
 	
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -57,9 +51,6 @@ public class MyShiroRealm extends AuthorizingRealm {
 	        }
 	        UserInfo userInfo = userInfos.get(0);
 	        String passWord = userInfo.getPassWord();
-	        if (adminName.equals(userName)) {
-	        	passWord = EncryptUtils.md5Encrypt(adminWord);
-	        }
 	        if (!passWord.equals(new String(up.getPassword()))) {
 	        	throw new AuthenticationException("密码错误");
 	        }
