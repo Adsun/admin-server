@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.admin.constant.ResultConstant;
 import com.admin.entity.Course;
+import com.admin.entity.CoursePlan;
 import com.admin.service.CoursePlanService;
 import com.admin.service.CourseService;
 
@@ -39,6 +40,26 @@ public class CourseController {
 	@DeleteMapping
 	public ResultConstant deleteCourse(Long id) {
 		courseService.deleteCourse(id);
+		return ResultConstant.ofSuccess();
+	}
+	
+	@GetMapping
+	public ResultConstant getCoursePlan(@RequestParam Integer courseId, @RequestParam Integer number, @RequestParam Integer size) {
+		return ResultConstant.ofSuccess(coursePlanService.getCourse(courseId, number-1, size));
+	}
+	
+	@PostMapping
+	public ResultConstant editCoursePlan(@RequestBody CoursePlan coursePlan) {
+		if (coursePlan.getId() != null) {
+			coursePlanService.updateCoursePlan(coursePlan);
+		} else {
+			coursePlanService.addCoursePlan(coursePlan);
+		}
+		return ResultConstant.ofSuccess();
+	}
+	@DeleteMapping
+	public ResultConstant deleteCoursePlan(Long id) {
+		coursePlanService.deleteCoursePlan(id);
 		return ResultConstant.ofSuccess();
 	}
 }
