@@ -29,7 +29,7 @@ public class EditService {
 	public Page<Edit> getEdit(Integer page, Integer size) {
 		Page<Edit> edits= editRepository.findAll(PageRequest.of(page, size));
 		for (Edit edit : edits.getContent()) {
-			edit.setContextStr(String.valueOf(edit.getContext()));
+			edit.setContextStr(new String(edit.getContext()));
 			edit.setConstantName(constantRepository.findByConstantId(edit.getConstantId()).get(0).getConstantName());
 		}
 		return edits;
