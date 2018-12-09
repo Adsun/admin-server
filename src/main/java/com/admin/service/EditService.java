@@ -58,6 +58,7 @@ public class EditService {
 	
 	@Transactional
 	public void addEdit(Edit edit) {
+		edit.setContext(edit.getContextStr());
 		editRepository.createEntity(edit);
 	}
 }
