@@ -22,7 +22,20 @@ public class EditService {
 	
 	@Transactional
 	public List<Edit> findEdit(String constantId) {
-		return editRepository.findByConstantId(constantId);
+		List<Edit> edits = editRepository.findByConstantId(constantId);
+		for (Edit edit : edits) {
+			if (edit.getContext() != null) {
+				edit.setContextStr(new String(edit.getContext()));
+			}
+		}
+		return edits;
+	}
+	
+	@Transactional
+	public Edit findEditById(Long id) {
+		Edit edit = editRepository.getOne(id);
+		edit.setContextStr(new String(edit.getContext()));
+		return edit;
 	}
 	
 	@Transactional

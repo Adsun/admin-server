@@ -2,6 +2,7 @@ package com.admin.controller;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import com.admin.service.ArticleService;
 import com.admin.service.ContactService;
 import com.admin.service.CoursePlanService;
 import com.admin.service.CourseService;
+import com.admin.service.EditService;
 import com.admin.service.ErrortService;
 import com.admin.service.JobService;
 import com.admin.service.PictureService;
@@ -46,6 +48,9 @@ public class WebController {
 	private TeacherService teacherService;
 	
 	@Autowired
+	private EditService editService;
+	
+	@Autowired
 	private JobService jobService;
 	
 	@RequestMapping("/job")
@@ -64,6 +69,15 @@ public class WebController {
 		Map<String, Object> pictureMap = pictureService.getAllPictures();
 		articleMap.putAll(pictureMap);
 		return ResultConstant.ofSuccess(articleMap);
+	}
+	
+	@RequestMapping("/edit")
+	public ResultConstant getEditSetting(String constantId, Long id) throws Exception {
+		if (StringUtils.isEmpty(constantId)) {
+			return ResultConstant.ofSuccess(editService.findEdit(constantId));
+		} else {
+			return ResultConstant.ofSuccess(editService.findEditById(id));
+		}
 	}
 	
 	@RequestMapping("/stantCourse")
