@@ -16,10 +16,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Teacher extends AbstractEntity {
-	private String name;
-	private String summary;
-	private String detail;
-	private String imgUrl;
-	private String link;
-	private String title;
+	private String name;//姓名
+	private String summary;//简介
+	private String detail;//介绍
+	private String imgUrl;//图片
+	private String link;//跳转链接
+	private String title;//介绍标题
 }
