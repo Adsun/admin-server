@@ -26,10 +26,17 @@ public class Edit extends AbstractEntity{
 	private String constantName;
 	private String title;
 	private String subTitle;
-	@Column(length=2000)
 	private String detail;
 	private String time;
-	@Column(length=20000)
+	@Lob 
+	@Basic(fetch = FetchType.LAZY) 
+	@Column(columnDefinition="longblob") 
+	private byte[] context;
+	
+	@Transient
 	private String contextStr;
 	
+	public void setContext(String contextStr) {
+		this.context = contextStr.getBytes();
+	}
 }
