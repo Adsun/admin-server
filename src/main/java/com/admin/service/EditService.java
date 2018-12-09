@@ -29,7 +29,9 @@ public class EditService {
 	public Page<Edit> getEdit(Integer page, Integer size) {
 		Page<Edit> edits= editRepository.findAll(PageRequest.of(page, size));
 		for (Edit edit : edits.getContent()) {
-			edit.setContextStr(new String(edit.getContext()));
+			if (edit.getContext() != null) {
+				edit.setContextStr(new String(edit.getContext()));
+			}
 			edit.setConstantName(constantRepository.findByConstantId(edit.getConstantId()).get(0).getConstantName());
 		}
 		return edits;
@@ -43,7 +45,9 @@ public class EditService {
 		tbEdit.setTitle(edit.getTitle());
 		tbEdit.setTime(edit.getTime());
 		tbEdit.setSubTitle(edit.getSubTitle());
-		tbEdit.setContext(edit.getContextStr());
+		if (edit.getContextStr() != null) {
+			tbEdit.setContext(edit.getContextStr());
+		}
 		editRepository.updateEntity(tbEdit);
 	}
 	
