@@ -46,7 +46,7 @@ public class EditService {
 		tbEdit.setTime(edit.getTime());
 		tbEdit.setSubTitle(edit.getSubTitle());
 		if (edit.getContextStr() != null) {
-			tbEdit.setContext(edit.getContextStr());
+			tbEdit.setContext(edit.getContextStr().getBytes());
 		}
 		editRepository.updateEntity(tbEdit);
 	}
@@ -58,7 +58,7 @@ public class EditService {
 	
 	@Transactional
 	public void addEdit(Edit edit) {
-		edit.setContext(edit.getContextStr());
+		edit.setContext(edit.getContextStr().getBytes());
 		editRepository.createEntity(edit);
 	}
 }

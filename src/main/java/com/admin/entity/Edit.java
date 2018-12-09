@@ -36,7 +36,4 @@ public class Edit extends AbstractEntity{
 	@Transient
 	private String contextStr;
 	
-	public void setContext(String contextStr) {
-		this.context = contextStr.getBytes();
-	}
 }
