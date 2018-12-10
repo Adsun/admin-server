@@ -18,5 +18,5 @@ import lombok.Setter;
 @Repository
 public interface ResourceRepository extends BaseRepository<Resource, Long> {
 	public List<Resource> findByConstantId(String constantId);
-	public List<Resource> findByBdyUrlNotNull();
+	public List<Resource> findByBdyUrlNotNullAndBdyUrlNot(String bdyUrl);
 }

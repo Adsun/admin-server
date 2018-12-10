@@ -21,7 +21,7 @@ public class ResourceService {
 	private ConstantRepository constantRepository;
 	public List<Resource> findResource(String constantId, Boolean free) {
 		if (free != null && free) {
-			return resourceRepository.findByBdyUrlNotNull();
+			return resourceRepository.findByBdyUrlNotNullAndBdyUrlNot("");
 		} else {
 			return resourceRepository.findByConstantId(constantId);
 		}
