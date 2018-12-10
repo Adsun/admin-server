@@ -47,7 +47,7 @@ public class CourseService {
 		Course tbCourse = courseRepository.getOne(course.getId());
 		tbCourse.setConstantId(course.getConstantId());
 		tbCourse.setCourseDtl(course.getCourseDtl());
-		tbCourse.setCourseName(course.getConstantName());
+		tbCourse.setCourseName(course.getCourseName());
 		tbCourse.setImgUrl(course.getImgUrl());
 		tbCourse.setPrice(course.getPrice());
 		tbCourse.setStartTime(course.getStartTime());
