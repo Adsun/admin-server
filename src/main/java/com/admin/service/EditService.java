@@ -1,6 +1,8 @@
 package com.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -21,14 +23,17 @@ public class EditService {
 	private ConstantRepository constantRepository;
 	
 	@Transactional
-	public List<Edit> findEdit(String constantId) {
+	public Map<String, Object> findEdit(String constantId) {
+		Map<String, Object> map = new HashMap<>();
 		List<Edit> edits = editRepository.findByConstantId(constantId);
 		for (Edit edit : edits) {
-			if (edit.getContext() != null) {
-				edit.setContextStr(new String(edit.getContext()));
-			}
+			map.put("title", edit.getTitle());
+			map.put("subTitle", edit.getSubTitle());
+			map.put("time", edit.getTime());
+			map.put("detail", edit.getDetail());
+			map.put("imgUrl", edit.getImgUrl());
 		}
-		return edits;
+		return map;
 	}
 	
 	@Transactional
