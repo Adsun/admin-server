@@ -1,5 +1,6 @@
 package com.admin.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,17 +24,20 @@ public class EditService {
 	private ConstantRepository constantRepository;
 	
 	@Transactional
-	public Map<String, Object> findEdit(String constantId) {
-		Map<String, Object> map = new HashMap<>();
+	public List<Map<String, Object>> findEdit(String constantId) {
+		List<Map<String, Object>> list = new ArrayList<>();
 		List<Edit> edits = editRepository.findByConstantId(constantId);
 		for (Edit edit : edits) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", edit.getId());
 			map.put("title", edit.getTitle());
 			map.put("subTitle", edit.getSubTitle());
 			map.put("time", edit.getTime());
 			map.put("detail", edit.getDetail());
 			map.put("imgUrl", edit.getImgUrl());
+			list.add(map);
 		}
-		return map;
+		return list;
 	}
 	
 	@Transactional
