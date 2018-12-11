@@ -17,7 +17,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://118.24.110.84:3306/adminServer?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true
     username: root
-    password: 123456
+    password: 121631
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat
     maxActive: 20
