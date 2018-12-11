@@ -28,7 +28,7 @@ public class Edit extends AbstractEntity{
 	private String subTitle;
 	private String detail;
 	private String time;
-	private String imgurl;
+	private String imgUrl;
 	@Lob 
 	@Basic(fetch = FetchType.LAZY) 
 	@Column(columnDefinition="longblob") 
