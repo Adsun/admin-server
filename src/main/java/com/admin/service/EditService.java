@@ -44,6 +44,7 @@ public class EditService {
 	public Edit findEditById(Long id) {
 		Edit edit = editRepository.getOne(id);
 		edit.setContextStr(new String(edit.getContext()));
+		edit.setContext(null);
 		return edit;
 	}
 	
