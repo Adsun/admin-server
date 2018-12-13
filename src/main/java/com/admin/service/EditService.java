@@ -44,7 +44,8 @@ public class EditService {
 	public Map<String, Object> findEditById(Long id) {
 		Edit edit = editRepository.getOne(id);
 		Map<String, Object> map = new HashMap<>();
-		map.put("contextStr", new String(edit.getContext()));
+		
+		map.put("contextStr", edit.getContext() == null ? "" : new String(edit.getContext()));
 		map.put("title", edit.getTitle());
 		map.put("subTitle", edit.getSubTitle());
 		map.put("time", edit.getTime());
