@@ -41,11 +41,16 @@ public class EditService {
 	}
 	
 	@Transactional
-	public Edit findEditById(Long id) {
+	public Map<String, Object> findEditById(Long id) {
 		Edit edit = editRepository.getOne(id);
-		edit.setContextStr(new String(edit.getContext()));
-		edit.setContext(null);
-		return edit;
+		Map<String, Object> map = new HashMap<>();
+		map.put("contextStr", new String(edit.getContext()));
+		map.put("title", edit.getTitle());
+		map.put("subTitle", edit.getSubTitle());
+		map.put("time", edit.getTime());
+		map.put("detail", edit.getDetail());
+		map.put("imgUrl", edit.getImgUrl());
+		return map;
 	}
 	
 	@Transactional
