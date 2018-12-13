@@ -31,4 +31,5 @@ public class Course extends AbstractEntity {
 	private String imgUrl;
 	private String teacherDtl;
 	private String teacherImg;
+	private String disCount;
 }
