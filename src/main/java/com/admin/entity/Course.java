@@ -1,8 +1,5 @@
 package com.admin.entity;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
@@ -32,4 +29,5 @@ public class Course extends AbstractEntity {
 	private String teacherDtl;
 	private String teacherImg;
 	private String disCount;
+	private String courseLink;
 }

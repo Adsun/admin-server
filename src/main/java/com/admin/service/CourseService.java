@@ -55,6 +55,7 @@ public class CourseService {
 		tbCourse.setTeacherDtl(course.getTeacherDtl());
 		tbCourse.setTeacherImg(course.getTeacherImg());
 		tbCourse.setDisCount(course.getDisCount());
+		tbCourse.setCourseLink(course.getCourseLink());
 		courseRepository.updateEntity(tbCourse);
 	}
 	
