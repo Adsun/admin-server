@@ -19,12 +19,12 @@ public class CoursePlanService {
 	
 	@Transactional
 	public List<CoursePlan> findCoursePlan(Integer courseId){
-		return coursePlanRepository.findByCourseIdOrderByUpdateDatetimeAsc(courseId);
+		return coursePlanRepository.findByCourseId(courseId);
 	}
 	
 	@Transactional
 	public Page<CoursePlan> getCourse(Integer courseId, Integer page, Integer size) {
-		Page<CoursePlan> coursePlans= coursePlanRepository.findByCourseIdOrderByUpdateDatetimeAsc(courseId, PageRequest.of(page, size));
+		Page<CoursePlan> coursePlans= coursePlanRepository.findByCourseId(courseId, PageRequest.of(page, size));
 		
 		return coursePlans;
 	}
