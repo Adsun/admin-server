@@ -24,7 +24,7 @@ public class CoursePlanService {
 	
 	@Transactional
 	public Page<CoursePlan> getCourse(Integer courseId, Integer page, Integer size) {
-		Page<CoursePlan> coursePlans= coursePlanRepository.findByCourseId(courseId, PageRequest.of(page, size));
+		Page<CoursePlan> coursePlans= coursePlanRepository.findByCourseIdOrderByUpdateDatetimeDesc(courseId, PageRequest.of(page, size));
 		
 		return coursePlans;
 	}

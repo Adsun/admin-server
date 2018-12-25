@@ -11,5 +11,5 @@ import com.admin.entity.CoursePlan;
 @Repository
 public interface CoursePlanRepository extends BaseRepository<CoursePlan, Long> {
 	public List<CoursePlan> findByCourseIdOrderByUpdateDatetimeDesc(Integer courseId);
-	public Page<CoursePlan> findByCourseId(Integer courseId, Pageable pageable);
+	public Page<CoursePlan> findByCourseIdOrderByUpdateDatetimeDesc(Integer courseId, Pageable pageable);
 }
