@@ -8,6 +8,9 @@ import java.util.Map;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -41,6 +44,7 @@ public class EditService {
 	}
 	
 	@Transactional
+	@Cacheable(value = "edits", key = "#id")
 	public Map<String, Object> findEditById(Long id) {
 		Edit edit = editRepository.getOne(id);
 		Map<String, Object> map = new HashMap<>();
@@ -67,6 +71,7 @@ public class EditService {
 	}
 	
 	@Transactional
+	@CachePut(value = "edits", key = "#edit.id")
 	public void updateEdit(Edit edit) {
 		Edit tbEdit = editRepository.getOne(edit.getId());
 		tbEdit.setConstantId(edit.getConstantId());
@@ -82,6 +87,7 @@ public class EditService {
 	}
 	
 	@Transactional
+	@CacheEvict(value = "edits", key = "#id")
 	public void deleteEdit(Long id) {
 		editRepository.deleteEntityById(id);
 	}

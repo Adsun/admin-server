@@ -1,7 +1,13 @@
 package com.admin.config;
 
 
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
+import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -16,9 +22,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @date 2018-10-23
  */
 @Configuration
+@EnableCaching
 public class WebMvcApp implements WebMvcConfigurer {
 	@Autowired
 	private InterceptorConfig interceptorConfig;
+	
+	@Bean
+    public CacheManager cacheManager() {
+        SimpleCacheManager cacheManager = new SimpleCacheManager();
+        cacheManager.setCaches(Collections.singletonList(new ConcurrentMapCache("edits")));
+        return cacheManager;
+    }
 	
 	@Bean
 	public CorsFilter corsFilter() {
