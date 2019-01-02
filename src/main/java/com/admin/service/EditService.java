@@ -80,6 +80,7 @@ public class EditService {
 		tbEdit.setTime(edit.getTime());
 		tbEdit.setSubTitle(edit.getSubTitle());
 		tbEdit.setImgUrl(edit.getImgUrl());
+		tbEdit.setDetail(edit.getDetail());
 		if (edit.getContextStr() != null) {
 			tbEdit.setContext(edit.getContextStr().getBytes());
 		}
