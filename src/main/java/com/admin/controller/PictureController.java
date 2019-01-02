@@ -1,5 +1,9 @@
 package com.admin.controller;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.admin.constant.ResultConstant;
 import com.admin.entity.Picture;
 import com.admin.service.PictureService;
+import com.alibaba.fastjson.JSON;
 
 @RestController
 @RequestMapping("/picture")
@@ -28,6 +33,14 @@ public class PictureController {
 	@PostMapping("/upload")
 	public ResultConstant uploadPicture(MultipartFile file) {
 		return ResultConstant.ofSuccess(pictureService.uploadPicture(file));
+	}
+	
+	@PostMapping("/uploadFile")
+	public String uploadFile(MultipartFile file) {
+		Map<String, Object> res = new HashMap<>();
+		res.put("errno", 0);
+		res.put("data", Arrays.asList(pictureService.uploadPicture(file)));
+		return JSON.toJSONString(res);
 	}
 	
 	@PostMapping
