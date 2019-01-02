@@ -71,7 +71,7 @@ public class EditService {
 	}
 	
 	@Transactional
-	@CachePut(value = "edits", key = "#edit.id")
+	@CacheEvict(value = "edits", key = "#edit.id")
 	public void updateEdit(Edit edit) {
 		Edit tbEdit = editRepository.getOne(edit.getId());
 		tbEdit.setConstantId(edit.getConstantId());
