@@ -44,7 +44,7 @@ public class EditService {
 	}
 	
 	@Transactional
-	@Cacheable(value = "edits", key = "#id")
+//	@Cacheable(value = "edits", key = "#id")
 	public Map<String, Object> findEditById(Long id) {
 		Edit edit = editRepository.getOne(id);
 		Map<String, Object> map = new HashMap<>();
@@ -71,7 +71,7 @@ public class EditService {
 	}
 	
 	@Transactional
-	@CacheEvict(value = "edits", key = "#edit.id")
+//	@CacheEvict(value = "edits", key = "#edit.id")
 	public void updateEdit(Edit edit) {
 		Edit tbEdit = editRepository.getOne(edit.getId());
 		tbEdit.setConstantId(edit.getConstantId());
@@ -87,7 +87,7 @@ public class EditService {
 	}
 	
 	@Transactional
-	@CacheEvict(value = "edits", key = "#id")
+//	@CacheEvict(value = "edits", key = "#id")
 	public void deleteEdit(Long id) {
 		editRepository.deleteEntityById(id);
 	}
