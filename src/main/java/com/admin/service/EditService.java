@@ -8,10 +8,12 @@ import java.util.Map;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -76,10 +78,9 @@ public class EditService {
 	}
 	
 	
-	
 	@Transactional
 	public Page<Edit> getEdit(Integer page, Integer size) {
-		Page<Edit> edits= editRepository.findAll(PageRequest.of(page, size));
+		Page<Edit> edits= editRepository.findConstantIdPage(PageRequest.of(page, size));
 		for (Edit edit : edits.getContent()) {
 			if (edit.getContext() != null) {
 				edit.setContextStr(new String(edit.getContext()));
