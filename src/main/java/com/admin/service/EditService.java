@@ -59,6 +59,23 @@ public class EditService {
 	}
 	
 	@Transactional
+	public List<Map<String, Object>> findEditByNum(String constantId) {
+		List<Map<String, Object>> list = new ArrayList<>();
+		List<Edit> edits = editRepository.findFirst5ByConstantIdInOrderByUpdateDatetimeDesc(constantId);
+		for (Edit edit : edits) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", edit.getId());
+			map.put("title", edit.getTitle());
+			map.put("subTitle", edit.getSubTitle());
+			map.put("time", edit.getTime());
+			map.put("detail", edit.getDetail());
+			map.put("imgUrl", edit.getImgUrl());
+			list.add(map);
+		}
+		return list;
+	}
+	
+	@Transactional
 	public Page<Edit> getEdit(Integer page, Integer size) {
 		Page<Edit> edits= editRepository.findAll(PageRequest.of(page, size));
 		for (Edit edit : edits.getContent()) {

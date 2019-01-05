@@ -11,5 +11,6 @@ import com.admin.entity.Edit;
 @Repository
 public interface EditRepository extends BaseRepository<Edit, Long> {
 	public List<Edit> findByConstantId(String constantId);
+	public List<Edit> findFirst5ByConstantIdInOrderByUpdateDatetimeDesc(String constantId);
 	public Page<Edit> findByConstantIdInOrderByUpdateDatetimeDesc(List<String> constantIds, Pageable pageable);
 }

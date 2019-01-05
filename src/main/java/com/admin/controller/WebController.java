@@ -72,7 +72,10 @@ public class WebController {
 	}
 	
 	@RequestMapping("/edit")
-	public ResultConstant getEditSetting(String constantId, Long id) throws Exception {
+	public ResultConstant getEditSetting(String constantId, Long id, Boolean limit) throws Exception {
+		if (limit) {
+			return ResultConstant.ofSuccess(editService.findEditByNum(constantId));
+		}
 		if (!StringUtils.isEmpty(constantId)) {
 			return ResultConstant.ofSuccess(editService.findEdit(constantId));
 		} else {
