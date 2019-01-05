@@ -79,15 +79,22 @@ public class EditService {
 	
 	
 	@Transactional
-	public Page<Edit> getEdit(Integer page, Integer size) {
-		Page<Edit> edits= editRepository.findConstantIdPage(PageRequest.of(page, size));
-		for (Edit edit : edits.getContent()) {
-			if (edit.getContext() != null) {
-				edit.setContextStr(new String(edit.getContext()));
-			}
-			edit.setConstantName(constantRepository.findByConstantId(edit.getConstantId()).get(0).getConstantName());
+	public Page<Map<String, Object>> getEdit(Integer page, Integer size) {
+		Page<Object[]> edits= editRepository.findConstantIdPage(PageRequest.of(page, size));
+		List<Map<String, Object>> list = new ArrayList<>();
+		for (Object[] objs : edits.getContent()) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", objs[0]);
+			map.put("constantId", objs[1]);
+			map.put("title", objs[2]);
+			map.put("subTitle", objs[3]);
+			map.put("time", objs[4]);
+			map.put("detail", objs[5]);
+			map.put("imgUrl", objs[6]);
+			map.put("constantName", constantRepository.findByConstantId(objs[1].toString()).get(0).getConstantName());
+			list.add(map);
 		}
-		return edits;
+		return new PageImpl<Map<String, Object>>(list, PageRequest.of(page, size), edits.getTotalElements());
 	}
 	
 	@Transactional
