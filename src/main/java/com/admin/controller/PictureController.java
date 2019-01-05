@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,11 +45,14 @@ public class PictureController {
 	}
 	
 	@PostMapping
-	public ResultConstant editPicture(@RequestBody Picture Picture) {
-		if (Picture.getId() != null) {
-			pictureService.updatePicture(Picture);
+	public ResultConstant editPicture(@RequestBody Picture picture) {
+		if (StringUtils.isEmpty(picture.getPicId())) {
+			return ResultConstant.ofFail(ResultConstant.FAIL_CODE_PARAM_ERROR, "类别或名称为空");
+		}
+		if (picture.getId() != null) {
+			pictureService.updatePicture(picture);
 		} else {
-			pictureService.addPicture(Picture);
+			pictureService.addPicture(picture);
 		}
 		return ResultConstant.ofSuccess();
 	}
