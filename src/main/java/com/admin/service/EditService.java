@@ -29,15 +29,32 @@ public class EditService {
 	@Transactional
 	public List<Map<String, Object>> findEdit(String constantId) {
 		List<Map<String, Object>> list = new ArrayList<>();
-		List<Edit> edits = editRepository.findByConstantId(constantId);
-		for (Edit edit : edits) {
+		List<Object[]> edits = editRepository.findConstantId(constantId);
+		for (Object[] objs : edits) {
 			Map<String, Object> map = new HashMap<>();
-			map.put("id", edit.getId());
-			map.put("title", edit.getTitle());
-			map.put("subTitle", edit.getSubTitle());
-			map.put("time", edit.getTime());
-			map.put("detail", edit.getDetail());
-			map.put("imgUrl", edit.getImgUrl());
+			map.put("id", objs[0]);
+			map.put("title", objs[1]);
+			map.put("subTitle", objs[2]);
+			map.put("time", objs[3]);
+			map.put("detail", objs[4]);
+			map.put("imgUrl", objs[5]);
+			list.add(map);
+		}
+		return list;
+	}
+	
+	@Transactional
+	public List<Map<String, Object>> findEditByNum(String constantId) {
+		List<Map<String, Object>> list = new ArrayList<>();
+		List<Object[]> edits = editRepository.findConstantIdLimit(constantId);
+		for (Object[] objs : edits) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", objs[0]);
+			map.put("title", objs[1]);
+			map.put("subTitle", objs[2]);
+			map.put("time", objs[3]);
+			map.put("detail", objs[4]);
+			map.put("imgUrl", objs[5]);
 			list.add(map);
 		}
 		return list;
@@ -58,22 +75,7 @@ public class EditService {
 		return map;
 	}
 	
-	@Transactional
-	public List<Map<String, Object>> findEditByNum(String constantId) {
-		List<Map<String, Object>> list = new ArrayList<>();
-		List<Edit> edits = editRepository.findFirst5ByConstantIdInOrderByUpdateDatetimeDesc(constantId);
-		for (Edit edit : edits) {
-			Map<String, Object> map = new HashMap<>();
-			map.put("id", edit.getId());
-			map.put("title", edit.getTitle());
-			map.put("subTitle", edit.getSubTitle());
-			map.put("time", edit.getTime());
-			map.put("detail", edit.getDetail());
-			map.put("imgUrl", edit.getImgUrl());
-			list.add(map);
-		}
-		return list;
-	}
+	
 	
 	@Transactional
 	public Page<Edit> getEdit(Integer page, Integer size) {
