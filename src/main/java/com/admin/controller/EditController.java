@@ -25,6 +25,11 @@ public class EditController {
 		return ResultConstant.ofSuccess(editService.getEdit(number-1, size));
 	}
 	
+	@GetMapping
+	public ResultConstant getEditById(Long id) {
+		return ResultConstant.ofSuccess(editService.findEditById(id));
+	}
+	
 	@PostMapping
 	public ResultConstant updateEdit(@RequestBody Edit edit) {
 		if (StringUtils.isEmpty(edit.getConstantId())) {

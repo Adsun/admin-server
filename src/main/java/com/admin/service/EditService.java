@@ -74,6 +74,7 @@ public class EditService {
 		map.put("time", edit.getTime());
 		map.put("detail", edit.getDetail());
 		map.put("imgUrl", edit.getImgUrl());
+		map.put("constantId", edit.getConstantId());
 		return map;
 	}
 	
