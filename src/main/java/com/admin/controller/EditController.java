@@ -25,7 +25,7 @@ public class EditController {
 		return ResultConstant.ofSuccess(editService.getEdit(number-1, size));
 	}
 	
-	@GetMapping
+	@GetMapping("/byId")
 	public ResultConstant getEditById(Long id) {
 		return ResultConstant.ofSuccess(editService.findEditById(id));
 	}
