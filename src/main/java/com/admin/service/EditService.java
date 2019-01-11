@@ -8,10 +8,12 @@ import java.util.Map;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -29,15 +31,32 @@ public class EditService {
 	@Transactional
 	public List<Map<String, Object>> findEdit(String constantId) {
 		List<Map<String, Object>> list = new ArrayList<>();
-		List<Edit> edits = editRepository.findByConstantId(constantId);
-		for (Edit edit : edits) {
+		List<Object[]> edits = editRepository.findConstantId(constantId);
+		for (Object[] objs : edits) {
 			Map<String, Object> map = new HashMap<>();
-			map.put("id", edit.getId());
-			map.put("title", edit.getTitle());
-			map.put("subTitle", edit.getSubTitle());
-			map.put("time", edit.getTime());
-			map.put("detail", edit.getDetail());
-			map.put("imgUrl", edit.getImgUrl());
+			map.put("id", objs[0]);
+			map.put("title", objs[1]);
+			map.put("subTitle", objs[2]);
+			map.put("time", objs[3]);
+			map.put("detail", objs[4]);
+			map.put("imgUrl", objs[5]);
+			list.add(map);
+		}
+		return list;
+	}
+	
+	@Transactional
+	public List<Map<String, Object>> findEditByNum(String constantId) {
+		List<Map<String, Object>> list = new ArrayList<>();
+		List<Object[]> edits = editRepository.findConstantIdLimit(constantId);
+		for (Object[] objs : edits) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", objs[0]);
+			map.put("title", objs[1]);
+			map.put("subTitle", objs[2]);
+			map.put("time", objs[3]);
+			map.put("detail", objs[4]);
+			map.put("imgUrl", objs[5]);
 			list.add(map);
 		}
 		return list;
@@ -48,26 +67,35 @@ public class EditService {
 	public Map<String, Object> findEditById(Long id) {
 		Edit edit = editRepository.getOne(id);
 		Map<String, Object> map = new HashMap<>();
-		
+		map.put("id", edit.getId());
 		map.put("contextStr", edit.getContext() == null ? "" : new String(edit.getContext()));
 		map.put("title", edit.getTitle());
 		map.put("subTitle", edit.getSubTitle());
 		map.put("time", edit.getTime());
 		map.put("detail", edit.getDetail());
 		map.put("imgUrl", edit.getImgUrl());
+		map.put("constantId", edit.getConstantId());
 		return map;
 	}
 	
+	
 	@Transactional
-	public Page<Edit> getEdit(Integer page, Integer size) {
-		Page<Edit> edits= editRepository.findAll(PageRequest.of(page, size));
-		for (Edit edit : edits.getContent()) {
-			if (edit.getContext() != null) {
-				edit.setContextStr(new String(edit.getContext()));
-			}
-			edit.setConstantName(constantRepository.findByConstantId(edit.getConstantId()).get(0).getConstantName());
+	public Page<Map<String, Object>> getEdit(Integer page, Integer size) {
+		Page<Object[]> edits= editRepository.findConstantIdPage(PageRequest.of(page, size));
+		List<Map<String, Object>> list = new ArrayList<>();
+		for (Object[] objs : edits.getContent()) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", objs[0]);
+			map.put("constantId", objs[1]);
+			map.put("title", objs[2]);
+			map.put("subTitle", objs[3]);
+			map.put("time", objs[4]);
+			map.put("detail", objs[5]);
+			map.put("imgUrl", objs[6]);
+			map.put("constantName", constantRepository.findByConstantId(objs[1].toString()).get(0).getConstantName());
+			list.add(map);
 		}
-		return edits;
+		return new PageImpl<Map<String, Object>>(list, PageRequest.of(page, size), edits.getTotalElements());
 	}
 	
 	@Transactional
