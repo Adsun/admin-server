@@ -37,8 +37,7 @@ public class AuthenticationFilter extends UserFilter {
 		HttpServletRequest httpReq = WebUtils.toHttp(request);
         /**系统重定向会默认把请求头清空，这里通过拦截器重新设置请求头，解决跨域问题*/
 		if (StringUtils.isEmpty(httpReq.getHeader("Access-Control-Allow-Origin"))) {
-			httpResp.addHeader("Access-Control-Allow-Origin", "http://118.24.110.84:8081");
-			httpResp.addHeader("Access-Control-Allow-Origin", "http://localhost:18007");
+			httpResp.addHeader("Access-Control-Allow-Origin", httpReq.getHeader("Origin"));
 	        httpResp.addHeader("Access-Control-Allow-Headers", "*");
 	        httpResp.addHeader("Access-Control-Allow-Methods", "*");
 	        httpResp.addHeader("Access-Control-Allow-Credentials", "true");
