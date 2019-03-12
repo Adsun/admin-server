@@ -30,4 +30,5 @@ public class Course extends AbstractEntity {
 	private String teacherImg;
 	private String disCount;
 	private String courseLink;
+	private Integer sort;
 }

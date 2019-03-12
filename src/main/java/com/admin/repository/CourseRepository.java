@@ -10,6 +10,6 @@ import com.admin.entity.Course;
 
 @Repository
 public interface CourseRepository extends BaseRepository<Course, Long> {
-	public List<Course> findByConstantId(String constantId);
+	public List<Course> findByConstantIdOrderBySort(String constantId);
 	public Page<Course> findByConstantIdInOrderByUpdateDatetimeDesc(List<String> constantIds, Pageable pageable);
 }

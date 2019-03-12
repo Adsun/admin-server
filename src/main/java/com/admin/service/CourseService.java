@@ -24,7 +24,7 @@ public class CourseService {
 	
 	@Transactional
 	public List<Course> findCourse(String constantId) {
-		return courseRepository.findByConstantId(constantId);
+		return courseRepository.findByConstantIdOrderBySort(constantId);
 	}
 	
 	@Transactional
@@ -56,6 +56,7 @@ public class CourseService {
 		tbCourse.setTeacherImg(course.getTeacherImg());
 		tbCourse.setDisCount(course.getDisCount());
 		tbCourse.setCourseLink(course.getCourseLink());
+		tbCourse.setSort(course.getSort());
 		courseRepository.updateEntity(tbCourse);
 	}
 	
